@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Manual tienda online</title>
+  </head>
+  <body style="height: 100vh">
+    <!-- Navbar -->
+    <nav class="navbar bg-body-tertiary fixed-top mb-5">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg"
+            alt="Logo"
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top" />
+          &nbsp Tienda Online
+        </a>
+      </div>
+    </nav>
+    <div style="min-height: 50px"></div>
+    <!-- En Navbar -->
+
+    <!-- Contenido -->
+    <div class="container">
+      <h1 class="mt-5 pb-2 text-center border-bottom">Manual de usuario</h1>
+      <!-- Content table -->
+      <div class="row">
+        <div class="col mt-3">
+          <h2 class="py-5">Tabla de contenido</h2>
+          <ul class="list-group list-group-flush" style="max-width: 650px">
+            <li class="list-group-item">
+              <a
+                class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                href="#crear-producto"
+                >Crear un producto</a
+              >
+            </li>
+            <li class="list-group-item">Crear un producto variable</li>
+            <li class="list-group-item">Eliminar un producto</li>
+            <li class="list-group-item">Como entrar al punto de venta</li>
+            <li class="list-group-item">Crear impuestos</li>
+            <li class="list-group-item">Crear precio de envios</li>
+            <li class="list-group-item">Ver ordenes</li>
+          </ul>
+        </div>
+      </div>
+      <!-- end content table  -->
+
+      <!-- Cards -->
+      <div class="row mt-5">
+        <!--Card-->
+        <div class="card mb-3 mw-50 my-4">
+          <div class="card-body">
+            <h5 id="crear-producto" class="card-title fw-bold">
+              Como crear un producto variable
+            </h5>
+            <p class="card-text">
+              Aprenderas como crear un producto en tu tienda
+            </p>
+            <div class="d-grid gap-2 my-4">
+              <a
+                type="button"
+                class="btn btn-secondary btn-lg"
+                href="https://youtu.be/2o029ZIkLv4?t=59"
+                target="_blank"
+                rel="noopener noreferrer">
+                Ver video
+              </a>
+            </div>
+          </div>
+        </div>
+        <!---End card-->
+        <!--Card-->
+        <div class="card mb-3 mw-50 my-4">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Como crear un producto</h5>
+            <p class="card-text">
+              Aprenderas como crear un producto en tu tienda
+            </p>
+            <div class="d-grid gap-2 my-4">
+              <a
+                type="button"
+                class="btn btn-secondary btn-lg"
+                href="https://youtu.be/2o029ZIkLv4?t=59"
+                target="_blank"
+                rel="noopener noreferrer">
+                Ver video
+              </a>
+            </div>
+          </div>
+        </div>
+        <!---End card-->
+      </div>
+      <!-- End cards -->
+    </div>
+
+    <!-- Fin del contenido -->
+
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+      /*!
+       * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
+       * Copyright 2011-2023 The Bootstrap Authors
+       * Licensed under the Creative Commons Attribution 3.0 Unported License.
+       */
+
+      (() => {
+        "use strict";
+
+        const storedTheme = localStorage.getItem("theme");
+
+        const getPreferredTheme = () => {
+          if (storedTheme) {
+            return storedTheme;
+          }
+
+          return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        };
+
+        const setTheme = function (theme) {
+          if (
+            theme === "auto" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+          ) {
+            document.documentElement.setAttribute("data-bs-theme", "dark");
+          } else {
+            document.documentElement.setAttribute("data-bs-theme", theme);
+          }
+        };
+
+        setTheme(getPreferredTheme());
+
+        const showActiveTheme = (theme, focus = false) => {
+          const themeSwitcher = document.querySelector("#bd-theme");
+
+          if (!themeSwitcher) {
+            return;
+          }
+
+          const themeSwitcherText = document.querySelector("#bd-theme-text");
+          const activeThemeIcon = document.querySelector(
+            ".theme-icon-active use"
+          );
+          const btnToActive = document.querySelector(
+            `[data-bs-theme-value="${theme}"]`
+          );
+          const svgOfActiveBtn = btnToActive
+            .querySelector("svg use")
+            .getAttribute("href");
+
+          document
+            .querySelectorAll("[data-bs-theme-value]")
+            .forEach((element) => {
+              element.classList.remove("active");
+              element.setAttribute("aria-pressed", "false");
+            });
+
+          btnToActive.classList.add("active");
+          btnToActive.setAttribute("aria-pressed", "true");
+          activeThemeIcon.setAttribute("href", svgOfActiveBtn);
+          const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`;
+          themeSwitcher.setAttribute("aria-label", themeSwitcherLabel);
+
+          if (focus) {
+            themeSwitcher.focus();
+          }
+        };
+
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", () => {
+            if (storedTheme !== "light" || storedTheme !== "dark") {
+              setTheme(getPreferredTheme());
+            }
+          });
+
+        window.addEventListener("DOMContentLoaded", () => {
+          showActiveTheme(getPreferredTheme());
+
+          document
+            .querySelectorAll("[data-bs-theme-value]")
+            .forEach((toggle) => {
+              toggle.addEventListener("click", () => {
+                const theme = toggle.getAttribute("data-bs-theme-value");
+                localStorage.setItem("theme", theme);
+                setTheme(theme);
+                showActiveTheme(theme, true);
+              });
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>
